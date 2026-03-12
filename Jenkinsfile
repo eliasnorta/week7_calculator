@@ -1,34 +1,27 @@
 pipeline {
     agent any
-
     tools {
         maven 'Maven_3.9.12'
     }
-
     environment {
         IMAGE_NAME = "eliasnorta/calculator-app"
     }
-
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
-
         stage('Build') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE_NAME:latest .'
             }
         }
-
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(
