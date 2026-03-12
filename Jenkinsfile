@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven_3.9.12'
+        maven 'Maven_3'
     }
     environment {
         IMAGE_NAME = "eliasnorta/calculator-app"
