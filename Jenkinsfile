@@ -5,6 +5,10 @@ pipeline {
     }
     environment {
         IMAGE_NAME = "eliasnorta/calculator-app"
+        DOCKER_IMAGE_TAG = 'latest'
+        DOCKER_CLI = '/usr/local/bin/docker'
+        PATH = "/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+        DOCKERHUB_CREDENTIALS_ID = 'Docker_Hub'
     }
     stages {
         stage('Checkout') {
@@ -14,7 +18,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn package -DskipTests'
             }
         }
         stage('Build Docker Image') {
